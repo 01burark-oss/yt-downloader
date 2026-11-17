@@ -1,0 +1,42 @@
+[package]
+name = "yt-indirici-rs"
+version = "0.1.0"
+edition = "2024"
+description = "yt-dlp tabanlı, anında açılan küçük YouTube indirici (Windows)"
+
+[[bin]]
+name = "yt-indirici"
+path = "src/main.rs"
+
+[dependencies]
+eframe = { version = "0.37.0", default-features = false, features = ["glow", "default_fonts", "clipboard"] }
+rfd = "0.18.0"
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.154"
+windows-sys = { version = "0.61.2", features = [
+    "Win32_Foundation",
+    "Win32_Security",
+    "Win32_System_JobObjects",
+    "Win32_System_SystemInformation",
+    "Win32_System_Threading",
+    "Win32_UI_WindowsAndMessaging",
+] }
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+
+# Smart App Control (SAC) bu makinede Cargo'nun yeni derlediği build script exe'lerini
+# rastgele engelliyor; release profilindeki build script'lerin hepsi geçemedi.
+# Dev profilinin build script'lerine SAC izin verdi. Burada yalnızca kodun kendisi
+# optimize edilir; build script'ler (build-override: opt-level 0) değişmez, bu yüzden
+# izinli dosyalar yeniden kullanılır. `cargo build` → target\debug\yt-indirici.exe
+[profile.dev]
+opt-level = 3
+# Not: `debug = false` burada KULLANILMAZ; proc-macro DLL'lerinin özetini değiştiriyor ve
+# SAC yenilerini engelliyor. Hata ayıklama bilgisi yalnızca son exe'den atılır:
+[profile.dev.package.yt-indirici-rs]
+strip = "debuginfo"

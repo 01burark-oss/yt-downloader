@@ -1,0 +1,22 @@
+# Rust build output (Cargo.lock is committed: binary crate)
+/target
+**/*.rs.bk
+*.pdb
+
+# Local downloads / tools placed next to the exe while testing
+/yt-dlp.exe
+/ffmpeg.exe
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

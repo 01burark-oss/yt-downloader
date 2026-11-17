@@ -1,0 +1,3 @@
+# Not: dlltool yolu burada rustflags ile VERİLMİYOR. rustflags build script'lerin
+# özetini değiştiriyor; Smart App Control da yeni özetli build script'leri engelliyor.
+# dlltool, derle.ps1 içinde PATH'e eklenir.
