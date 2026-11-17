@@ -1,4 +1,4 @@
-# YT İndirici
+# YT Downloader
 
 A small, fast-starting Windows desktop app for downloading YouTube videos as MP4 or audio as MP3, built on top of `yt-dlp`.
 
